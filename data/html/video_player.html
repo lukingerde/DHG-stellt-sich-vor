@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> Video-player for Work Adventures </title>
+    </head>
+    <body>
+        <!-- <video src="." id="player" controls=true></video> -->
+    </body>
+    <script>
+        let request = document.location.href;
+        let video_url = request.substr(request.indexOf("#") + 1, request.length);
+        // let player = document.getElementById("player");
+        let player = document.createElement("video");
+        player.controls = true;
+        player.src = video_url;
+        player.autoplay = true;
+        document.getElementsByTagName("body")[0].appendChild(player);
+    </script>
+    <style>
+        html {
+            background-color: black;
+        }
+        
+        video {
+            max-width: 100%;
+            max-height: 100%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</html>
