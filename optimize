@@ -1,9 +1,0 @@
-rm -r optimized
-mkdir optimized
-
-for file in ./raw/maps/*.json; do
-    echo "Processing file $file"
-    MapOptimizer/node_modules/.bin/tile-optimizer -i $file -o optimized/maps
-done
-
-cp -r ./raw/data/html ./optimized/data/html
