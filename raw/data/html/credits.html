@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> Credits </title>
+    </head>
+    <body>
+        <h2> Created by: </h2>
+        <ul>
+            <li onclick="showPerson(this);"> Brigitte Greiner (Lehrerin am DHG, Projektleitung) </li>
+            <!-- <li> Martin Otersen (Lehrer am DHG, Projektleitung) </li> -->
+            <li onclick="showPerson(this);"> Petra Kuhn-Bader (Lehrerin am DHG, Projektleitung) </li>
+            <li onclick="showPerson(this);"> Fabian Saitner (Schüler der 10. Klasse, Design des Forums) </li>
+            <li onclick="showPerson(this);"> Pascal Diehm (Schüler der 11. Klasse, Design der Fachräume) </li>
+            <!-- <li> Paul Kunkel (Schüler der 9. Klasse, Design der Toiletten) </li> -->
+            <li onclick="showPerson(this);"> Paul-Alexander Lehrieder (Schüler der 10. Klasse, Design des Neubaus) </li>
+            <li onclick="showPerson(this);"> Marwin Glaser (Schüler der 11. Klasse, Design des Altbaus) </li>
+            <li onclick="showPerson(this);"> Noah Klein (Schüler der 9. Klasse, Design der Sporthallen) </li>
+        </ul>
+        <div id="showperson"></div>
+    </body>
+    <script>
+        quotes = {
+            brigitte: "Quote from Brigitte Greiner!",
+            petra: "Quote from Petra Kuhn-Bader!",
+            fabian: "Quote from Fabian Saitner!",
+            pascal: "Quote from Pascal Diehm!",
+            paul_alexander: "Quote from Paul-Alexander Lehrider!",
+            marwin: "Quote from Marwin Glaser!",
+            noah: "Quote from Noah Klein!"
+        }
+        
+        function showPerson(element) {
+            // Select element
+            for(let elem in document.getElementsByClassName("selected")) document.getElementsByClassName("selected")[elem].className = "";
+            element.className = "selected";
+            
+            // Read element data
+            let name = element.innerText.substr(0, element.innerText.indexOf(" ")).toLowerCase();
+            name = name.replace(/-/g, "_");
+            let full_name = element.innerText.substr(0, element.innerText.indexOf("(") - 1);
+            
+            // React to click
+            let board = document.getElementById("showperson");
+            board.innerHTML = "";
+            if(name in quotes) {
+                let header = document.createElement("h2");
+                header.innerHTML = full_name;
+                board.appendChild(header);
+                
+                let quote = document.createElement("p");
+                quote.innerHTML = quotes[name];
+                board.appendChild(quote);
+            }
+        }
+    </script>
+    <style>
+        html, body {
+            background-color: black;
+            color: aliceblue;
+        }
+        
+        h2 {
+            margin-bottom: -10px;
+            
+            text-align: center;
+        }
+        
+        ul {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            
+            list-style-type: none;
+        }
+        
+        ul li {
+            display: block;
+            width: 40em;
+            
+            border: 3px solid skyblue;
+            border-radius: 10%;
+            
+            background-color: #111;
+            
+            text-align: center;
+            
+            margin: 20px 0px;
+            padding: 5px 0px;
+            
+            transition: color,background-color 200ms;
+            
+            user-select: none;
+        }
+        
+        ul li.selected {
+            background-color: aqua;
+            color: black;
+            
+            transition: color,background-color 200ms;
+        }
+        
+        ul li:hover {
+            background-color: deepskyblue;
+            color: black;
+            
+            cursor: pointer;
+            
+            transition: color,background-color 200ms;
+        }
+        
+        #showperson {
+            position: absolute;
+            top: 30em;
+            left: 50%;
+            transform: translate(-50%);
+            
+            text-align: center;
+        }
+    </style>
+</html>
